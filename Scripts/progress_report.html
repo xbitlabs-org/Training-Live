@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Code Redirect</title>
+</head>
+<body>
+    <script>
+        // Base URL for the training sessions
+        const baseUrl = "http://training-live.xbitlabs.org/Monthly-Sessions/";
+
+        // Function to determine the std value based on the input
+        function getStdValue(std) {
+            if (std >= 1 && std <= 5) {
+                return '1-5';
+            } else if (std >= 6 && std <= 8) {
+                return '6-8';
+            } else if (std >= 9 && std <= 10) {
+                return '9-10';
+            } else if (std >= 11 && std <= 12) {
+                return '11-12';
+            } else {
+                return null; // Invalid std value
+            }
+        }
+
+        // Function to prompt the user for a class code and redirect
+        function redirectToClassUrl() {
+            const stdInput = prompt("Please enter your class of study (1-12):");
+            const std = parseInt(stdInput);
+
+            // Determine the std value based on the input
+            const stdValue = getStdValue(std);
+
+            if (stdValue) {
+                const classCode = prompt("Please enter your class code:");
+
+                // Construct the full URL
+                const fullUrl = baseUrl + stdValue + '/' + classCode + '/' + classCode + '.pdf'; 
+
+                // Redirect to the constructed URL
+                window.location.href = fullUrl;
+            } else {
+                alert("Invalid class of study. Please enter a number between 1 and 12.");
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = redirectToClassUrl;
+    </script>
+</body>
+</html>
+
